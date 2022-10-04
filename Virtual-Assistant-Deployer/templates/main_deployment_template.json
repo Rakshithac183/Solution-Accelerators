@@ -96,7 +96,7 @@
         "autoUpgradeMinorVersion": true,
         "settings": {
           "fileUris": [
-            ""
+            "https://github.com/CloudLabsAI-Azure/Solution-Accelerators/blob/main/Virtual-Assistant-Deployer/scripts/psscript.ps1"
           ],
           "commandToExecute": "[concat('powershell.exe -ExecutionPolicy Unrestricted -File psscript-01.ps1', variables('Common'))]"
         }
