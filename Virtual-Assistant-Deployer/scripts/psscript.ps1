@@ -188,7 +188,7 @@ Start-Process C:\LabFiles\PowerShell-6.0.2-win-x64.msi -ArgumentList "/quiet"
 
 #Download LogonTask
 $WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://experienceazure.blob.core.windows.net/templates/many-models/virtual-assistant-deployer/scripts/logontask-01.ps1","C:\LabFiles\logontask.ps1")
+$WebClient.DownloadFile("","C:\LabFiles\logontask.ps1")
 
 
 #Enable Auto-Logon
