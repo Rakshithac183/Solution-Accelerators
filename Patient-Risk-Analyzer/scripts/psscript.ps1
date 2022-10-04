@@ -203,14 +203,14 @@ $machinelearningaccname = $machinelearningName.Name
 
 #Download LogonTask
 $WebClient = New-Object System.Net.WebClient
-$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/logontask.ps1","C:\LabFiles\logon.ps1")
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/logontask.ps1","C:\LabFiles\logon.ps1")
 
 #download psm1 file
-$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/validation.ps1","C:\LabFiles\validate.ps1")
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/validation.ps1","C:\LabFiles\validate.ps1")
 
 
 #download psm1 file
-$WebClient.DownloadFile("https://experienceazure.blob.core.windows.net/templates/many-models/machine-learning-patient-risk-analyzer/script/validation.psm1","C:\LabFiles\validationscript.psm1")
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/validation.psm1","C:\LabFiles\validationscript.psm1")
 
 
 (Get-Content -Path "C:\LabFiles\logon.ps1") | ForEach-Object {$_ -Replace 'enter_uname', $userName} | Set-Content -Path "C:\LabFiles\logon.ps1"
