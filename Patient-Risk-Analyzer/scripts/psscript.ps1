@@ -245,6 +245,23 @@ $WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Sol
 (Get-Content -Path "C:\LabFiles\logon.ps1") | ForEach-Object {$_ -Replace 'enter_uname', $userName} | Set-Content -Path "C:\LabFiles\logon.ps1"
 (Get-Content -Path "C:\LabFiles\logon.ps1") | ForEach-Object {$_ -Replace 'enter_pssword', $password} | Set-Content -Path "C:\LabFiles\logon.ps1"
 
+#Download lab files
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/solutionaccelarator.zip","C:\patientrisk.zip")
+
+#unziping folder
+function Expand-ZIPFile($file, $destination)
+{
+$shell = new-object -com shell.application
+$zip = $shell.NameSpace($file)
+foreach($item in $zip.items())
+{
+$shell.Namespace($destination).copyhere($item)
+}
+}
+Expand-ZIPFile -File "C:\patientrisk.zip" -Destination "C:\LabFiles"
+
+Copy-Item -Path C:\LabFiles\solutionaccelarator\* -Destination C:\LabFiles -Force
 
 #first notebook
 (Get-Content -Path "C:\LabFiles\00_preparedata.ipynb") | ForEach-Object {$_ -Replace "data_lake_account_name = ''", "data_lake_account_name = '$storageaccname'"} | Set-Content -Path "C:\LabFiles\00_preparedata.ipynb"
