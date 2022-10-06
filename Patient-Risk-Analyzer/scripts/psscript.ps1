@@ -253,7 +253,7 @@ $WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Sol
 
 #download psm1 file
 $WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/validation.psm1","C:\LabFiles\validationscript.psm1")
-
+$WebClient.DownloadFile("https://raw.githubusercontent.com/CloudLabsAI-Azure/Solution-Accelerators/main/Patient-Risk-Analyzer/scripts/docker.ps1","C:\LabFiles\docker.ps1")
 
 (Get-Content -Path "C:\LabFiles\logon.ps1") | ForEach-Object {$_ -Replace 'enter_uname', $userName} | Set-Content -Path "C:\LabFiles\logon.ps1"
 (Get-Content -Path "C:\LabFiles\logon.ps1") | ForEach-Object {$_ -Replace 'enter_pssword', $password} | Set-Content -Path "C:\LabFiles\logon.ps1"
