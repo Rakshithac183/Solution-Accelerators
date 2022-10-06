@@ -169,6 +169,22 @@ $cred = new-object -typename System.Management.Automation.PSCredential -argument
 
 Connect-AzAccount -Credential $cred | Out-Null
 
+#Download lab files
+$WebClient = New-Object System.Net.WebClient
+$WebClient.DownloadFile("https://github.com/CloudLabsAI-Azure/Solution-Accelerators.git","C:\Patient-Risk-Analyzer.zip")
+
+#unziping folder
+function Expand-ZIPFile($file, $destination)
+{
+$shell = new-object -com shell.application
+$zip = $shell.NameSpace($file)
+foreach($item in $zip.items())
+{
+$shell.Namespace($destination).copyhere($item)
+}
+}
+Expand-ZIPFile -File "C:\Patient-Risk-Analyzer.zip" -Destination "C:\LabFiles\"
+
 $rgName = (Get-AzResourceGroup | Where-Object { $_.ResourceGroupName -like "many*" }).ResourceGroupName
 $storageAccounts = Get-AzResource -ResourceGroupName $rgName -ResourceType "Microsoft.Storage/storageAccounts"
 $storageName = $storageAccounts | Where-Object { $_.Name -like 'pati*' }
@@ -178,9 +194,18 @@ $storageaccname = $storageName.Name
 
 $srcUrl = $null
 $rgLocation = (Get-AzResourceGroup -Name $rgName).Location
+
+$filesystemName = "raw"
+$dirname = "DatasetDiabetes/"
+$dirname1 = "Names/"
+
+New-AzDataLakeGen2Item -Context $storageContext -FileSystem $filesystemName -Path $dirname -Directory
+New-AzDataLakeGen2Item -Context $storageContext -FileSystem $filesystemName -Path $dirname1 -Directory
+
           
 
-$srcUrl = "https://experienceazure.blob.core.windows.net/raw?sp=racwdli&st=2022-07-04T14:53:48Z&se=2022-10-28T22:53:48Z&spr=https&sv=2021-06-08&sr=c&sig=dIS%2BQIE%2BFGPUq71lCMVnlfF%2Bt9OGvy1Og1AS9LD%2BBDc%3D"
+$srcUrl = "C:\LabFiles\Solution-Accelerators-main\Patient-Risk-Analyzer\Resources\diabetic_data.csv"
+$srcUrl1 = "C:\LabFiles\Solution-Accelerators-main\Patient-Risk-Analyzer\Resources\Names.csv"
 
            
 $destContext = $storage.Context
@@ -189,13 +214,17 @@ $resources = $null
 
 $startTime = Get-Date
 $endTime = $startTime.AddDays(2)
-$destSASToken = New-AzStorageContainerSASToken  -Context $destContext -Container "raw" -Permission rwd -StartTime $startTime -ExpiryTime $endTime
-$destUrl = $destContext.BlobEndPoint + "raw" + $destSASToken
+$destSASToken = New-AzStorageContainerSASToken  -Context $destContext -Container raw  -Permission rwdlac -StartTime $startTime -ExpiryTime $endTime
+$destUrl = $destContext.BlobEndPoint + "raw/" + "DatasetDiabetes/" + $destSASToken
+$destUrl1 = $destContext.BlobEndPoint + "raw/" + "Names/" + $destSASToken
+
 
 $srcUrl 
 $destUrl
 
 C:\LabFiles\azcopy.exe copy $srcUrl $destUrl --recursive
+C:\LabFiles\azcopy.exe copy $srcUrl1 $destUrl1 --recursive
+
 
 $machinelearningAccount = Get-AzResource -ResourceGroupName $rgName -ResourceType "Microsoft.MachineLearningServices/workspaces"
 $machinelearningName = $machinelearningAccount | Where-Object { $_.Name -like 'ml*' }
