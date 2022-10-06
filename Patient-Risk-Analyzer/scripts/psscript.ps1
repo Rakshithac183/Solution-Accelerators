@@ -225,6 +225,12 @@ $destUrl
 C:\LabFiles\azcopy.exe copy $srcUrl $destUrl --recursive
 C:\LabFiles\azcopy.exe copy $srcUrl1 $destUrl1 --recursive
 
+$WebClient.DownloadFile("https://github.com/PowerShell/PowerShell/releases/download/v7.2.6/PowerShell-7.2.6-win-x64.msi","C:\LabFiles\PowerShell-7.2.6-win-x64.msi")
+
+msiexec.exe /I C:\LabFiles\PowerShell-7.2.6-win-x64.msi /quiet
+
+Start-Process C:\LabFiles\PowerShell-7.2.6-win-x64.msi -ArgumentList "/quiet"
+
 
 $machinelearningAccount = Get-AzResource -ResourceGroupName $rgName -ResourceType "Microsoft.MachineLearningServices/workspaces"
 $machinelearningName = $machinelearningAccount | Where-Object { $_.Name -like 'ml*' }
