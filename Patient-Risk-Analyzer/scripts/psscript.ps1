@@ -125,6 +125,12 @@ Function InstallEdgeChromium
     $Shortcut.Save()
 }
 
+Function InstallAzCLI
+{
+    choco install azure-cli -y -force
+}
+
+
 Function WindowsServerCommon
 {
 [Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls
@@ -137,6 +143,7 @@ DisableServerMgrNetworkPopup
 CreateLabFilesDirectory
 DisableWindowsFirewall
 InstallAzPowerShellModule
+InstallAzCLI
 InstallEdgeChromium
 }
 
