@@ -1,4 +1,4 @@
-#Prod deploy script
+#Deploy script 
 
 CD D:\LabFiles
 
@@ -136,6 +136,7 @@ Start-Sleep -s 20
 #----------------------------------------------------------------#
 #   Step 1 - Storage Account & Containers						 #
 #----------------------------------------------------------------#
+Write-Host STEP 1 - Storage Account and Containers -ForegroundColor Yellow
 # Create Storage Account
 # storage resources
 #$storageAccountName = $prefix + $id + "stor";
@@ -217,7 +218,7 @@ $outArray.Add("v_storageAccountConnectionString=$storageAccountConnectionString"
 #   Step 2 - Cognitive Services									 #
 #----------------------------------------------------------------#
 # Create Form Recognizer Account
-
+Write-Host STEP 2 - Cognitive Services -ForegroundColor Yellow
 # cognitive services resources
 #$formRecognizerName = $prefix + $id + "formreco"
 $formRecognizerName = $prefix + "frcs"
@@ -367,6 +368,7 @@ $outArray.Add("v_customVisionPredictSubscriptionKey=$customVisionPredictSubscrip
 #----------------------------------------------------------------#
 #   Step 3 - App Service Plan 									 #
 #----------------------------------------------------------------#
+Write-Host STEP 3 - App Service Plan  -ForegroundColor Yellow
 
 # Create App Service Plan
 Write-Host Creating app service plan... -ForegroundColor Green
@@ -389,6 +391,8 @@ if ($currentApsName.Name -eq $null ) {
 #----------------------------------------------------------------#
 #   Step 4 - Azure Search Service								 #
 #----------------------------------------------------------------#
+Write-Host STEP 4 - Azure Search Service -ForegroundColor Yellow
+
 # Create Cognitive Search Service
 Write-Host Creating Cognitive Search Service... -ForegroundColor Green
 #$cognitiveSearchName = $prefix + $id + "azsearch"
@@ -412,6 +416,8 @@ $outArray.Add("v_cognitiveSearchEndPoint=$cognitiveSearchEndPoint")
 #----------------------------------------------------------------#
 #   Step 5 - App Insight and Function Storage Account			 #
 #----------------------------------------------------------------#
+Write-Host STEP 5 - App Insight and Function Storage Account -ForegroundColor Yellow
+
 #$appInsightName = $prefix + $id + "appinsight"
 $appInsightName = $prefix + "ai"
 $outArray.Add("v_appInsightName=$appInsightName")
@@ -492,6 +498,7 @@ Start-Sleep -s 20
 #----------------------------------------------------------------#
 #   Step 6 - CosmosDb account, database and container			 #
 #----------------------------------------------------------------#
+Write-Host STEP 6 - CosmosDb account, database and container -ForegroundColor Yellow
 
 # cosmos resources
 $cosmosAccountName = $prefix + "cdbsql"
@@ -615,6 +622,7 @@ $outArray.Add("v_cosmosConnectionString=$cosmosConnectionString")
 #----------------------------------------------------------------#
 #   Step 7 - Deploy Azure Functions							 	 #
 #----------------------------------------------------------------#
+Write-Host STEP 7 - Deploy Azure Functions -ForegroundColor Yellow
 
 # function app
 #$functionApppdf = $prefix + $id + "pdf"
@@ -757,6 +765,9 @@ $functionKeys
 #----------------------------------------------------------------#
 #   Step 8 - Find all forms that needs training and upload		 #
 #----------------------------------------------------------------#
+Write-Host STEP 8 - Find all forms that needs training and upload -ForegroundColor Yellow
+
+
 if ($formsTraining -eq 'true')
 {
 	# We currently have two level of "Folders" that we process
@@ -833,6 +844,8 @@ if ($formsTraining -eq 'true')
 #----------------------------------------------------------------#
 #   Step 9 - Train Form Recognizer Models						 #
 #----------------------------------------------------------------#
+Write-Host STEP 9 - Train Form Recognizer Models -ForegroundColor Yellow
+
 # Train Form Recognizer
 if ($formsTraining -eq 'true')
 {
@@ -878,6 +891,8 @@ if ($formsTraining -eq 'true')
 #----------------------------------------------------------------#
 #   Step 10 - Train LUIS Models						 			 #
 #----------------------------------------------------------------#
+Write-Host STEP 10 - Train LUIS Models -ForegroundColor Yellow
+
 # Train LUIS
 if ($luisTraining -eq 'true')
 {
@@ -959,6 +974,8 @@ if ($luisTraining -eq 'true')
 #----------------------------------------------------------------#
 #   Step 11 - Build, Train and Publish Custom Vision Model		 #
 #----------------------------------------------------------------#
+Write-Host STEP 11 - Build, Train and Publish Custom Vision Model -ForegroundColor Yellow
+
 #$customVisionProjectName = $prefix + $id + "classify"
 $customVisionProjectName = $prefix + "cvfclassify"
 $outArray.Add("v_customVisionProjectName = $customVisionProjectName")
@@ -1169,7 +1186,7 @@ else
 #----------------------------------------------------------------#
 #   Step 12 - Create API Connection and Deploy Logic app		 #
 #----------------------------------------------------------------#
-Write-Host STEP 13 - Create API Connection and Deploy Logic app -ForegroundColor Yellow
+Write-Host STEP 12 - Create API Connection and Deploy Logic app -ForegroundColor Yellow
 
 $azureBlobApiConnectionName = $prefix + "blobapi"
 $outArray.Add("v_azureBlobApiConnectionName = $azureBlobApiConnectionName")
@@ -1216,7 +1233,7 @@ New-AzResourceGroupDeployment `
 		-TemplateParameterFile $azureEventGridParametersFilePath
 
 
-Start-Sleep -s 30
+Start-Sleep -s 15
 Write-Host Authorize $azureEventGridApiConnectionName API Connection -ForegroundColor Yellow
 
 Write-Host Please go to - "Intelligent" - Resource Group and authorize EventGrid API connection - $azureEventGridApiConnectionName - within 2 minutes -ForegroundColor Green
@@ -1308,7 +1325,7 @@ New-AzResourceGroupDeployment `
 		-TemplateParameterFile $office365ParametersFilePath
 
 
-Start-Sleep -s 30
+Start-Sleep -s 15
 Write-Host Authorize $office365ApiConnectionName API Connection -ForegroundColor Yellow
 Write-Host Please go to - "Intelligent" - Resource Group and authorize EventGrid API connection - $office365ApiConnectionName - within 2 minutes -ForegroundColor Green
 $time=120
@@ -1360,7 +1377,7 @@ New-AzResourceGroupDeployment `
 #----------------------------------------------------------------#
 #   Step 13 - Create Azure Table and store model information	 #
 #----------------------------------------------------------------#
-Write-Host STEP 14 - Create Azure Table and store model information -ForegroundColor Yellow
+Write-Host STEP 13 - Create Azure Table and store model information -ForegroundColor Yellow
 
 $storageAccount = Get-AzStorageAccount `
 	-ResourceGroupName $resourceGroupName `
@@ -1465,7 +1482,7 @@ if ( $luisTraining -eq 'true' )
 #----------------------------------------------------------------#
 #   Step 14 - Cognitive Search Skills, Index & Indexer			 #
 #----------------------------------------------------------------#
-Write-Host STEP 15 - Cognitive Search Skills, Index and Indexer -ForegroundColor Yellow
+Write-Host STEP 14 - Cognitive Search Skills, Index and Indexer -ForegroundColor Yellow
 
 # cognitive search
 #$customVisionContainers
@@ -2164,7 +2181,7 @@ if ( $cognitiveSearch -eq 'true' )
 #----------------------------------------------------------------#
 #   Step 15 - Upload sample documents for E2E testing			 #
 #----------------------------------------------------------------#
-Write-Host STEP 16 - Upload sample documents for E2E testing -ForegroundColor Yellow
+Write-Host STEP 15 - Upload sample documents for E2E testing -ForegroundColor Yellow
 
 Write-Host Upload sample data and trigger Logic app -ForegroundColor Green
 $solTestFormFilePath = "$ScriptRoot\e2etest\"
@@ -2199,7 +2216,7 @@ foreach ($solTestFolder in $solTestFolders) {
 #----------------------------------------------------------------#
 #   Step 16 - Deploy Search Web Api to Azure 					 #
 #----------------------------------------------------------------#
-Write-Host STEP 17 - Deploy Search Web Api to Azure -ForegroundColor Yellow
+Write-Host STEP 16 - Deploy Search Web Api to Azure -ForegroundColor Yellow
 
 if ( $deployWebUi -eq 'true')
 {
@@ -2261,7 +2278,7 @@ if ( $deployWebUi -eq 'true')
 	#----------------------------------------------------------------#
 	#   Step 17 - Deploy Search UI to Azure 					 	 #
 	#----------------------------------------------------------------#
-    Write-Host STEP 18 - Deploy Search UI to Azure -ForegroundColor Yellow
+    Write-Host STEP 17 - Deploy Search UI to Azure -ForegroundColor Yellow
 
 	Write-Host Create Azure Website to deploy searchui -ForegroundColor Green
 	$searchUiWebAppName = $prefix + 'webapp'
