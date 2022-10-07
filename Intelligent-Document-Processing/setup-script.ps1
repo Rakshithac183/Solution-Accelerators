@@ -21,10 +21,13 @@ Set-ExecutionPolicy -ExecutionPolicy unrestricted -Force
 #Creating LabValues file
 New-Item D:\LabFiles\LabValues.txt
 
+$subscriptionIdInFile= "subscriptionId = "+$subscriptionId
+$uniqueNumberInFile= "uniqueNumber = "+$uniqueNumber
+$locationInFile= "location = "+$location
 
-Add-Content -Path D:\LabFiles\LabValues.txt -Value $subscriptionId -Force
-Add-Content -Path D:\LabFiles\LabValues.txt -Value $uniqueNumber -Force
-Add-Content -Path D:\LabFiles\LabValues.txt -Value $location -Force
+Add-Content -Path D:\LabFiles\LabValues.txt -Value $subscriptionIdInFile -Force
+Add-Content -Path D:\LabFiles\LabValues.txt -Value $uniqueNumberInFile -Force
+Add-Content -Path D:\LabFiles\LabValues.txt -Value $locationInFile -Force
 
 
 #Function4 Install Chocolatey
