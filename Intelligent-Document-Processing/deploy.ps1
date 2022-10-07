@@ -114,8 +114,8 @@ $ErrorActionPreference = "Stop"
 #Write-Host Logging in... -ForegroundColor Green
 
 $outArray.Add("v_subscriptionId=$subscriptionId")
-#$context = Get-AzSubscription -SubscriptionId $subscriptionId
-Set-AzContext -Subscription $subscriptionId
+$context = Get-AzSubscription -SubscriptionId $subscriptionId
+#Set-AzContext -Subscription $subscriptionId
 
 Enable-AzContextAutosave -Scope CurrentUser
 $index = 0
