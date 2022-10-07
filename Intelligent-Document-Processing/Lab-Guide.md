@@ -1,4 +1,4 @@
-![MSUS Solution Accelerator](./images/MSUS%20Solution%20Accelerator%20Banner%20Two_981.png)
+![MSUS Solution Accelerator](../media/Intelligent-Document-Processing/MSUS%20Solution%20Accelerator%20Banner%20Two_981.png)
 
 # Intelligent Document Processing Solution Accelerator
 
