@@ -1216,7 +1216,7 @@ New-AzResourceGroupDeployment `
 		-TemplateParameterFile $azureEventGridParametersFilePath
 
 
-Start-Sleep -s 15
+Start-Sleep -s 30
 Write-Host Authorize $azureEventGridApiConnectionName API Connection -ForegroundColor Yellow
 
 Write-Host Please go to - "Intelligent" - Resource Group and authorize EventGrid API connection - $azureEventGridApiConnectionName - within 2 minutes -ForegroundColor Green
@@ -1308,7 +1308,7 @@ New-AzResourceGroupDeployment `
 		-TemplateParameterFile $office365ParametersFilePath
 
 
-Start-Sleep -s 15
+Start-Sleep -s 30
 Write-Host Authorize $office365ApiConnectionName API Connection -ForegroundColor Yellow
 Write-Host Please go to - "Intelligent" - Resource Group and authorize EventGrid API connection - $office365ApiConnectionName - within 2 minutes -ForegroundColor Green
 $time=120
