@@ -32,22 +32,22 @@ Note: Most of the resources of this solution would have been already deployed.
 ### STEP 0 - Before you start (Pre-requisites)
 
 These are the key pre-requisites to deploy this solution:
-1. When you access the lab, a virtual machine will startup with the PowerShell logon task.
+1. Download the **setup-script.ps1** file.
 
 
-![Log on task](/images/logon-task-start.jpg)
+![Download Setup script](../media/Intelligent-Document-Processing/Download-setup-script.jpg)
 
-2. While the powershell logon task runs in background, log in to the Azure portal using the **Microsoft Edge browser** shortcut and the credentials provided in the lab guide.
+2. Open the **setup-script.ps1** script in Powershell as an **Administrator**.
 
-3. In the welcome window that appears, please select **Maybe Later**. 
-
-
-![Portal Maybe Later](/images/maybe-later-azure-homepage.jpg)
-
-4. Now, select the **Resource groups** icon under **Navigate**. 
+3. In the **setup-script.ps1** file, add the values for **subscriptionId** ***(1)*** and **uniqueNumber** ***(2)***. Also, update the region name in **location** ***(3)*** if required and save the file. 
 
 
-![Open RGs](/images/idp-azure-home-page.jpg)
+![Add values in setup script](../media/Intelligent-Document-Processing/Add-values.jpg)
+
+
+4. Execute the **setup-script.ps1** script. 
+
+
 
 5. Open the **Intelligent** resource group that we will use for the rest of this demo.
 
