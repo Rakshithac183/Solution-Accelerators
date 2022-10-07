@@ -1,10 +1,10 @@
 #Setup Script
 
 #Enter Subscription ID
-$subscriptionId= "<EnterSubscriptionIDValue"
+$subscriptionId= "<EnterSubscriptionIDValue>"
 
 #Enter any 6 digit number
-$uniqueNumber= "<Enter-any-6-Digits"
+$uniqueNumber= "<Enter-any-6-Digits>"
 
 #Update the region here if required: East US, South Central US, West US
 $location= "East US"
