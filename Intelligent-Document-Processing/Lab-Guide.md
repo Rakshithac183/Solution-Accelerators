@@ -6,7 +6,7 @@ Many organizations process different format of forms in various format. These fo
 
 ## Architecture
 
-![Architecture Diagram](/images/architecture.png)
+![Architecture Diagram](../media/Intelligent-Document-Processing/architecture.png) 
 
 ## Process-Flow
 
@@ -45,9 +45,13 @@ These are the key pre-requisites to deploy this solution:
 ![Add values in setup script](../media/Intelligent-Document-Processing/Add-values.jpg)
 
 
-4. Execute the **setup-script.ps1** script. 
+4. Execute the **setup-script.ps1** script. This will download all the pre-requisites in the **D:\LabFiles** directory and will start deploying the resources.
 
 
+5. When you receive an Azure login popup, provide your Azure credentials to login. If you had previously logged in through PowerShell, then you will be prompted to select your account. Please select your account in this case.
+
+ 
+![Azure Login popup](../media/Intelligent-Document-Processing/Azure-login-prompt.jpg)
 
 5. Open the **Intelligent** resource group that we will use for the rest of this demo.
 
