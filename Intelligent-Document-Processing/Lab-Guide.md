@@ -53,19 +53,13 @@ These are the key pre-requisites to deploy this solution:
  
 ![Azure Login popup](../media/Intelligent-Document-Processing/Azure-login-prompt.jpg)
 
-5. Open the **Intelligent** resource group that we will use for the rest of this demo.
+6. Wait for 5 minutes, then got to **portal.azure.com** and open the **Intelligent** resource group that we will use for the rest of this demo.
 
 
-![Select Intelligent RG](/images/select-RG.jpg)
+![Select Intelligent RG](../media/Intelligent-Document-Processing/select-RG.jpg)
 
-6. You will notice there are already few resources present. 
-
-
-![Few resources present in RG](/images/few-resources.jpg)
 
 7. Go back to the PowerShell window and wait for a few minutes as we manually need to authorize two API connections.
-
-
 
 
 ### STEP 1 - Authorize Event Grid API Connection
